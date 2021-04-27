@@ -2,6 +2,8 @@
 
 ## Center your single lonely buffer easily!
 
+[![centerpad demo](https://asciinema.org/a/56L3pWYB2VKc5Z7loSniPgnQ2.svg)](https://asciinema.org/a/56L3pWYB2VKc5Z7loSniPgnQ2)
+
 Are you only working on one file in your current neovim session? Do you have a big monitor and have to look *all the way* to the left of your screen to see your code? centerpad.nvim is here to help you easily center your code in the middle of your screen!
 
 ## Installing
