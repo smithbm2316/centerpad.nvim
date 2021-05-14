@@ -1,40 +1,60 @@
 *centerpad.txt* Center your single lonely buffer easily!
 Author:   Ben Smith <https://ben-smith.dev>
 Repo:     https://github.com/smithbm2316/centerpad.nvim
-License:  Same terms as Vim itself (see |license|)
+License:  MIT
 
 This is a simple plugin that at the moment takes your current buffer and plops
 it into the middle of your screen, with two scratch buffers on either side.
-Nothing more than that! Of course, the width of how big the padding on each
-side of your screen is easily configurable as well! This plugin is simple by
-nature, as it is my first attempt at a Lua plugin, and really was just a
-utility module that I wrote for my own neovim dotfiles, that I figured I could
-pretty easily turn into a small plugin that a few others might get some use out
-of.
+Nothing more than that! Of course, the width of how big the padding on each side
+of your screen is easily configurable as well! This plugin is simple by nature,
+as it is my first attempt at a Lua plugin, and really was just a utility module
+that I wrote for my own neovim dotfiles, that I figured I could pretty easily
+turn into a small plugin that a few others might get some use out of.
 
-CONFIGURATION                                                       *centerpad*
+USAGE                                                               *centerpad*
 
-All you will have to do is run the command `:Centerpad` (which always runs with
-the default options) or `:lua require'centerpad'.toggle()` to toggle centering
-of your current buffer on/off. By default, centerpad.nvim will set the left and
-right padding to 40 columns each. If you want to override this, I'd recommend
-setting up a keybinding in your vim config similar to what I have in my own
-config:
+All you will have to do is run the command `:Centerpad` or `:lua
+require'centerpad'.toggle()` to toggle centering of your current buffer on/off.
+The `:Centerpad` command accepts 1-2 arguments, you can pass it one number to
+use for both sides of the centered buffer (i.e. `:Centerpad 20`), or two numbers
+if you want the left and right scratch buffers to use different sizing (i.e.
+  `:Centerpad 10 20`).
 
-IN YOUR INIT.VIM
-```vim
-nnoremap <silent><leader>z :lua require'centerpad'.toggle{\
-leftpad = 40, rightpad = 40 }<cr>
-```
+CONFIGURATION
+
+By default, centerpad.nvim will set the left and right padding to 36 columns
+each. If you want to override this, I'd recommend setting up a keybinding in
+your vim config similar to what I have in my own config:
 
 IN YOUR INIT.LUA
 ```lua
+-- using the command
 vim.api.nvim_set_keymap(
   'n',
   '<leader>z',
-  ":lua require'centerpad'.toggle{ leftpad = 20, rightpad = 20 }<cr>",
-  { noremap = true, silent = true }
+  '<cmd>Centerpad<cr>',
+  { silent = true, noremap = true }
 )
+
+-- or using the lua function
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>z',
+  "<cmd>lua require'centerpad'.toggle{ leftpad = 20, rightpad = 20 }<cr>",
+  { silent = true, noremap = true }
+)
+```
+
+IN YOUR INIT.VIM
+```vim
+" using the command
+nnoremap <silent><leader>z <cmd>Centerpad<cr>
+
+" or using the lua function
+nnoremap <silent><leader>z <cmd>lua require'centerpad'.toggle {
+  leftpad = 36,
+  rightpad = 36
+}<cr>
 ```
 
 The `leftpad` and `rightpad` options will adjust the padding for the scratch

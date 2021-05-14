@@ -1,5 +1,5 @@
 if exists('g:loaded_centerpad') | finish | endif
 
-command! -nargs=0 -complete=command Centerpad lua require('centerpad').toggle()
+command! -nargs=* Centerpad lua require('centerpad').run_command(<f-args>)
 
 let g:loaded_centerpad = 1

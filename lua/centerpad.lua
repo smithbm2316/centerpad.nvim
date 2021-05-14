@@ -70,13 +70,24 @@ end
 -- function for user to run, toggling on/off
 center_buf.toggle = function(config)
   -- set default options
-  config = config or { leftpad = 40, rightpad = 40 }
+  config = config or { leftpad = 36, rightpad = 36 }
 
   -- if state is true, then toggle center_buf off
   if vim.g.center_buf_enabled == true then
     turn_off(config)
   else
     turn_on(config)
+  end
+end
+
+center_buf.run_command = function(...)
+  local args = {...}
+  if #args == 1 then
+    center_buf.toggle { leftpad = args[1], rightpad = args[1] }
+  elseif #args == 2 then
+    center_buf.toggle { leftpad = args[1], rightpad = args[2] }
+  else
+    center_buf.toggle()
   end
 end
 
