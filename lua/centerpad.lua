@@ -28,7 +28,6 @@ local turn_on = function(config)
   local rightpad = v.nvim_get_current_buf()
   v.nvim_buf_set_name(rightpad, 'rightpad')
 
-  print(vim.inspect(config.rightpad))
   -- Switch to rightpad and fix its width
   local rightpad_win = v.nvim_get_current_win()
   v.nvim_set_current_win(rightpad_win)
