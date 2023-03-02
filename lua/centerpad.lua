@@ -24,6 +24,12 @@ local turn_on = function(config)
   vim.cmd(string.format('%svnew', config.leftpad))
   local leftpad = v.nvim_get_current_buf()
   v.nvim_buf_set_name(leftpad, 'leftpad')
+
+  -- Switch to leftpad and fix its width
+  local leftpad_win = v.nvim_get_current_win()
+  v.nvim_set_current_win(leftpad_win)
+  v.nvim_win_set_option(leftpad_win, "winfixwidth", true)
+
   v.nvim_set_current_win(main_win)
 
   -- create scratch window to the right
@@ -31,6 +37,12 @@ local turn_on = function(config)
   vim.cmd(string.format('%svnew', config.rightpad))
   local rightpad = v.nvim_get_current_buf()
   v.nvim_buf_set_name(rightpad, 'rightpad')
+
+  -- Switch to rightpad and fix its width
+  local rightpad_win = v.nvim_get_current_win()
+  v.nvim_set_current_win(rightpad_win)
+  v.nvim_win_set_option(rightpad_win, "winfixwidth", true)
+
   v.nvim_set_current_win(main_win)
 
   -- keep track of the current state of the plugin
