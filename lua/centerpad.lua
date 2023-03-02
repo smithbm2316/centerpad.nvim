@@ -7,12 +7,6 @@ local turn_on = function(config)
   -- Get reference to current_buffer
   local main_win = v.nvim_get_current_win()
 
-  -- get the user's current options for split directions
-  local useropts = {
-    splitbelow = vim.o.splitbelow,
-    splitright = vim.o.splitright,
-  }
-
   -- create scratch window to the left
   vim.cmd(string.format('%svnew', config.leftpad))
   vim.cmd('wincmd H')
@@ -45,10 +39,6 @@ local turn_on = function(config)
 
   -- keep track of the current state of the plugin
   vim.g.center_buf_enabled = true
-
-  -- reset the user's split opts
-  vim.o.splitbelow = useropts.splitbelow
-  vim.o.splitright = useropts.splitright
 end
 
 -- function to toggle zen mode off
